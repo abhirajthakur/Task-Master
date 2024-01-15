@@ -13,10 +13,11 @@ export default function Home() {
   const setUser = useSetRecoilState(userAtom);
   const [features, setFeatures] = useRecoilState(featureAtom);
   const router = useRouter();
+  const BACKEND_ROUTE = process.env.BACKEND_ROUTE;
 
   const fetchFeatures = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/features");
+      const { data } = await axios.get(`${BACKEND_ROUTE}/features`);
       setFeatures(data.features);
     } catch (err) {
       console.error("Error fetching features:", err);

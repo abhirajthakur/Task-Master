@@ -6,11 +6,12 @@ import { useSetRecoilState } from "recoil";
 export function TaskCard({ name, description, taskId, xp }) {
   const [isCompleted, setIsCompleted] = useState(false);
   const setUser = useSetRecoilState(userAtom);
+  const BACKEND_ROUTE = process.env.BACKEND_ROUTE;
 
   const fetchCompletedStatus = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/tasks/${taskId}/completed`,
+        `${BACKEND_ROUTE}/tasks/${taskId}/completed`,
         {
           headers: {
             Authorization: window.localStorage.getItem("token"),
@@ -34,7 +35,7 @@ export function TaskCard({ name, description, taskId, xp }) {
     e.preventDefault();
 
     const { data } = await axios.post(
-      `http://localhost:8080/tasks/${taskId}/complete`,
+      `${BACKEND_ROUTE}/tasks/${taskId}/complete`,
       {},
       {
         headers: {

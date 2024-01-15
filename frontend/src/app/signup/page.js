@@ -11,6 +11,7 @@ export default function Home() {
     email: "",
     password: "",
   });
+  const BACKEND_ROUTE = process.env.BACKEND_ROUTE;
 
   const handleChange = (e) => {
     setForm({
@@ -23,7 +24,7 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post(`http://localhost:8080/user/signup`, {
+      const { data } = await axios.post(`${BACKEND_ROUTE}/user/signup`, {
         name: form.name,
         email: form.email,
         password: form.password,

@@ -9,6 +9,7 @@ import { useSetRecoilState } from "recoil";
 export default function Home() {
   const router = useRouter();
   const setUser = useSetRecoilState(userAtom);
+  const BACKEND_ROUTE = process.env.BACKEND_ROUTE;
 
   const [form, setForm] = useState({
     email: "",
@@ -26,7 +27,7 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post(`http://localhost:8080/user/signin`, {
+      const { data } = await axios.post(`${BACKEND_ROUTE}/user/signin`, {
         email: form.email,
         password: form.password,
       });

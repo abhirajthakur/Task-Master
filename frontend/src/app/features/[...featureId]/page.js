@@ -7,11 +7,12 @@ import { useEffect, useState } from "react";
 
 export default function Page({ params }) {
   const [tasks, setTasks] = useState([]);
+  const BACKEND_ROUTE = process.env.BACKEND_ROUTE;
   const fetchTasks = async () => {
     try {
       const { featureId } = params;
       const { data } = await axios.get(
-        `http://localhost:8080/features/${featureId}/tasks`,
+        `${BACKEND_ROUTE}/features/${featureId}/tasks`,
       );
 
       setTasks(data.tasks);

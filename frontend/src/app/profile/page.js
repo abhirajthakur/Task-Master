@@ -9,11 +9,12 @@ import { useRecoilValue } from "recoil";
 export default function Home() {
   const user = useRecoilValue(userAtom);
   const [completedTasks, setCompletedTasks] = useState([]);
+  const BACKEND_ROUTE = process.env.BACKEND_ROUTE;
 
   useEffect(() => {
     async function fetchTasks() {
       const { data } = await axios.get(
-        `http://localhost:8080/user/${user.userId}/completedTasks`,
+        `${BACKEND_ROUTE}/user/${user.userId}/completedTasks`,
         {
           headers: {
             Authorization: window.localStorage.getItem("token"),
