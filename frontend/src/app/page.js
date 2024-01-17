@@ -1,4 +1,5 @@
 "use client";
+
 import { userAtom } from "@/store/atoms/user";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -16,8 +17,5 @@ export default function Home() {
     }
   }, [user.isAuthenticated, router]);
 
-  return (
-    <main className="flex flex-col w-full justify-between">
-    </main>
-  );
+  return <main className="flex flex-col w-full justify-between"></main>;
 }

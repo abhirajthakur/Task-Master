@@ -25,7 +25,7 @@ export default function Home() {
       setCompletedTasks(data.tasks);
     }
     fetchTasks();
-  }, [user]);
+  }, [user, BACKEND_ROUTE]);
 
   return (
     <main>

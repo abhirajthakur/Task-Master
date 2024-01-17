@@ -50,10 +50,16 @@ router.post("/:featureId/task", async (req, res) => {
     if (feature.taskIds.includes(taskId)) {
       return res.json({ message: "Task already included in this feature" });
     } else {
-      feature.taskIds.push(taskId);
-      await feature.save();
+      await Feature.updateOne(
+        { _id: featureId },
+        {
+          $push: {
+            taskIds: taskId,
+          },
+        },
+      );
     }
-    res.json({ feature: feature });
+    res.json({ message: "Task successfully added to the feature" });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
